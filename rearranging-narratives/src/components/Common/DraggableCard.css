@@ -1,0 +1,88 @@
+.draggable-card {
+  background-color: var(--color-white);
+  border: var(--border-width) solid var(--color-black);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-1);
+  cursor: grab;
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.draggable-card:hover {
+  box-shadow: var(--shadow-outline);
+}
+
+.draggable-card:focus {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.draggable-card.dragging {
+  opacity: 0.5;
+  cursor: grabbing;
+}
+
+.card-image-container {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border: var(--border-width) solid var(--color-black);
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+  background-color: var(--color-gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.card-info {
+  margin-top: var(--spacing-1);
+  padding: var(--spacing-1);
+}
+
+.card-title {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-black);
+  margin: 0 0 4px 0;
+}
+
+.card-role {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-gray-600);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Keyboard focus states */
+.draggable-card:focus-visible .card-image-container {
+  box-shadow: var(--shadow-inset);
+}
+
+/* Selection state (for future use) */
+.draggable-card.selected {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.draggable-card.selected .card-title {
+  color: var(--color-white);
+}
+
+.draggable-card.selected .card-role {
+  color: var(--color-gray-300);
+}
+
+.draggable-card.selected .card-image-container {
+  border-color: var(--color-white);
+}

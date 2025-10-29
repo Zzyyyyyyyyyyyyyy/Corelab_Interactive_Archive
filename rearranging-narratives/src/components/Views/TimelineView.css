@@ -1,0 +1,114 @@
+.timeline-view {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-3);
+  gap: var(--spacing-2);
+}
+
+.timeline-instructions {
+  padding: var(--spacing-1) var(--spacing-2);
+  background-color: var(--color-gray-100);
+  border: var(--border-width) solid var(--color-black);
+  border-radius: var(--border-radius-sm);
+}
+
+.instructions-text {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-gray-700);
+}
+
+.timeline-track {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-2);
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: var(--spacing-2);
+  border: var(--border-width) solid var(--color-black);
+  border-radius: var(--border-radius);
+  background-color: var(--color-white);
+  align-items: start;
+}
+
+.timeline-slot {
+  flex-shrink: 0;
+  width: 200px;
+  transition: transform var(--transition-base);
+}
+
+.timeline-slot:hover {
+  transform: translateY(-2px);
+}
+
+/* Placeholder styles */
+.timeline-placeholder {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  border: var(--border-width) solid var(--color-black);
+  border-radius: var(--border-radius);
+  background-color: var(--color-gray-100);
+}
+
+.placeholder-content {
+  text-align: center;
+  max-width: 400px;
+  padding: var(--spacing-4);
+}
+
+.placeholder-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--spacing-2);
+  border: var(--border-width) solid var(--color-black);
+  border-radius: var(--border-radius);
+  background-color: var(--color-white);
+}
+
+.placeholder-title {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--color-black);
+  margin: 0 0 var(--spacing-1) 0;
+}
+
+.placeholder-text {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+}
+
+/* Scrollbar for timeline track */
+.timeline-track::-webkit-scrollbar {
+  height: 8px;
+}
+
+.timeline-track::-webkit-scrollbar-track {
+  background: var(--color-gray-100);
+  border-radius: var(--border-radius-sm);
+}
+
+.timeline-track::-webkit-scrollbar-thumb {
+  background: var(--color-gray-400);
+  border-radius: var(--border-radius-sm);
+}
+
+.timeline-track::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray-600);
+}

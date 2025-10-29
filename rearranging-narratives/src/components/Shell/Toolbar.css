@@ -1,0 +1,72 @@
+.toolbar {
+  background-color: var(--color-gray-100);
+  border-bottom: var(--border-width) solid var(--color-black);
+  padding: var(--spacing-1) var(--spacing-3);
+}
+
+.toolbar-content {
+  max-width: var(--max-width-2xl);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.toolbar-section {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.toolbar-label {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-gray-600);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.toolbar-button-group {
+  display: flex;
+  gap: 0;
+  border: var(--border-width) solid var(--color-black);
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+}
+
+.toolbar-button {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  padding: var(--spacing-1) var(--spacing-2);
+  background-color: var(--color-white);
+  color: var(--color-black);
+  border: none;
+  border-right: var(--border-width) solid var(--color-black);
+  cursor: pointer;
+  transition: background-color var(--transition-base);
+}
+
+.toolbar-button:last-child {
+  border-right: none;
+}
+
+.toolbar-button:hover {
+  background-color: var(--color-gray-100);
+}
+
+.toolbar-button:focus {
+  outline: none;
+  position: relative;
+  z-index: 1;
+  box-shadow: var(--focus-ring);
+}
+
+.toolbar-button-active {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.toolbar-button-active:hover {
+  background-color: var(--color-gray-900);
+}

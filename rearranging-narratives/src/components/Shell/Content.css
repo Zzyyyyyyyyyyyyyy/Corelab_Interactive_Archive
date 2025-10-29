@@ -1,0 +1,12 @@
+.content {
+  flex: 1;
+  background-color: var(--color-white);
+  overflow: auto;
+}
+
+.content-container {
+  max-width: var(--max-width-2xl);
+  margin: 0 auto;
+  padding: var(--spacing-3);
+  min-height: 100%;
+}

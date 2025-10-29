@@ -1,0 +1,138 @@
+/* Design Tokens - Monochrome 2D / Print-Lab Noir */
+
+:root {
+  /* Colors - Pure B/W, no gradients */
+  --color-black: #0B0B0B;
+  --color-white: #F9F9F7;
+  --color-gray-100: #F0F0F0;
+  --color-gray-200: #E0E0E0;
+  --color-gray-300: #C0C0C0;
+  --color-gray-400: #A0A0A0;
+  --color-gray-500: #808080;
+  --color-gray-600: #606060;
+  --color-gray-700: #404040;
+  --color-gray-800: #303030;
+  --color-gray-900: #202020;
+
+  /* Typography */
+  --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  /* Font Sizes */
+  --font-size-xs: 0.75rem;   /* 12px */
+  --font-size-sm: 0.875rem;  /* 14px */
+  --font-size-base: 1rem;    /* 16px */
+  --font-size-lg: 1.125rem;  /* 18px */
+  --font-size-xl: 1.25rem;   /* 20px */
+  --font-size-2xl: 1.5rem;   /* 24px */
+  --font-size-3xl: 1.875rem; /* 30px */
+
+  /* Line Heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* Spacing (8px grid) */
+  --spacing-0: 0;
+  --spacing-1: 8px;
+  --spacing-2: 16px;
+  --spacing-3: 24px;
+  --spacing-4: 32px;
+  --spacing-5: 40px;
+  --spacing-6: 48px;
+  --spacing-8: 64px;
+  --spacing-10: 80px;
+  --spacing-12: 96px;
+
+  /* Border */
+  --border-width: 2px;
+  --border-radius: 12px;
+  --border-radius-sm: 6px;
+  --border-radius-lg: 16px;
+
+  /* Shadows (ink stroke style) */
+  --shadow-outline: 0 0 0 2px var(--color-black);
+  --shadow-outline-white: 0 0 0 2px var(--color-white);
+  --shadow-inset: inset 0 0 0 2px var(--color-black);
+  --shadow-inset-white: inset 0 0 0 2px var(--color-white);
+
+  /* Motion */
+  --transition-fast: 120ms ease-out;
+  --transition-base: 150ms ease-out;
+  --transition-slow: 180ms ease-out;
+
+  /* Layout */
+  --max-width-xs: 320px;
+  --max-width-sm: 640px;
+  --max-width-md: 768px;
+  --max-width-lg: 1024px;
+  --max-width-xl: 1280px;
+  --max-width-2xl: 1536px;
+
+  /* Z-index */
+  --z-base: 1;
+  --z-dropdown: 10;
+  --z-overlay: 20;
+  --z-modal: 30;
+  --z-toast: 40;
+  --z-tooltip: 50;
+
+  /* Focus Ring */
+  --focus-ring: 0 0 0 3px var(--color-black), 0 0 0 5px var(--color-white);
+  --focus-ring-invert: 0 0 0 3px var(--color-white), 0 0 0 5px var(--color-black);
+}
+
+/* Dark mode inverts (if needed) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Optionally invert for dark mode */
+  }
+}
+
+/* Texture patterns as CSS classes */
+.texture-halftone {
+  background-image: radial-gradient(circle, var(--color-black) 25%, transparent 25%);
+  background-size: 4px 4px;
+  background-position: 0 0, 2px 2px;
+}
+
+.texture-crosshatch {
+  background-image:
+    repeating-linear-gradient(45deg, transparent, transparent 3px, var(--color-black) 3px, var(--color-black) 4px),
+    repeating-linear-gradient(-45deg, transparent, transparent 3px, var(--color-black) 3px, var(--color-black) 4px);
+  background-size: 8px 8px;
+}
+
+.texture-diagonal {
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--color-black),
+    var(--color-black) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+}
+
+.texture-dots {
+  background-image: radial-gradient(circle, var(--color-black) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+/* Utility classes */
+.outline-stroke {
+  box-shadow: var(--shadow-outline);
+}
+
+.outline-stroke-white {
+  box-shadow: var(--shadow-outline-white);
+}
+
+.focus-ring:focus {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.focus-ring-invert:focus {
+  outline: none;
+  box-shadow: var(--focus-ring-invert);
+}
