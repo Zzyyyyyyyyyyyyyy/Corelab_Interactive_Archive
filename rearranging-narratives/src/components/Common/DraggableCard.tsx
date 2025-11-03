@@ -1,7 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import type { Identifier } from 'dnd-core';
 import type { ImageFragment } from '../../types/image';
+import { MetadataEditor } from './MetadataEditor';
 import './DraggableCard.css';
 
 // Define drag item type identifier for React DnD
@@ -29,6 +30,7 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
   onKeyDown,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
+  const [showMetadataEditor, setShowMetadataEditor] = useState(false);
 
   // ========================================
   // DROP TARGET: Makes this card accept other draggable cards
@@ -101,28 +103,38 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
   drag(drop(ref));
 
   return (
-    <div
-      ref={ref}
-      className={`draggable-card ${isDragging ? 'dragging' : ''}`}
-      data-handler-id={handlerId}
-      onClick={() => onClick?.(fragment)}
-      onKeyDown={(e) => onKeyDown?.(e, fragment, index)}
-      tabIndex={0}
-      role="button"
-      aria-label={`${fragment.title} - ${fragment.description || ''}`}
-    >
-      <div className="card-image-container">
-        <img
-          src={fragment.imagePath}
-          alt={fragment.title}
-          className="card-image"
-          draggable={false}
+    <>
+      <div
+        ref={ref}
+        className={`draggable-card ${isDragging ? 'dragging' : ''}`}
+        data-handler-id={handlerId}
+        onClick={() => onClick?.(fragment)}
+        onDoubleClick={() => setShowMetadataEditor(true)}
+        onKeyDown={(e) => onKeyDown?.(e, fragment, index)}
+        tabIndex={0}
+        role="button"
+        aria-label={`${fragment.title} - ${fragment.description || ''}`}
+      >
+        <div className="card-image-container">
+          <img
+            src={fragment.imagePath}
+            alt={fragment.title}
+            className="card-image"
+            draggable={false}
+          />
+        </div>
+        <div className="card-info">
+          <h3 className="card-title">{fragment.title}</h3>
+          {fragment.role && <span className="card-role">{fragment.role}</span>}
+        </div>
+      </div>
+
+      {showMetadataEditor && (
+        <MetadataEditor
+          fragment={fragment}
+          onClose={() => setShowMetadataEditor(false)}
         />
-      </div>
-      <div className="card-info">
-        <h3 className="card-title">{fragment.title}</h3>
-        {fragment.role && <span className="card-role">{fragment.role}</span>}
-      </div>
-    </div>
+      )}
+    </>
   );
 };
