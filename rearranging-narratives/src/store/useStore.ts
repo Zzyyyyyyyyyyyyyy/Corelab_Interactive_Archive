@@ -226,7 +226,7 @@ export const useStore = create<AppState>()(
     }),
     {
       // Persist to localStorage
-      name: 'rearranging-narratives-storage',
+      name: 'rearranging-narratives-storage-v3',
       partialize: (state) => ({
         images: state.images,
         imageOrder: state.imageOrder,

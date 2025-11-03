@@ -64,6 +64,34 @@
   letter-spacing: 0.05em;
 }
 
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-1);
+  margin: var(--spacing-1) 0;
+}
+
+.card-tag {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-gray-700);
+  background-color: transparent;
+  border: 1px solid var(--color-gray-400);
+  border-radius: 4px;
+  padding: 2px var(--spacing-1);
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+.card-description {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-xs);
+  line-height: 1.5;
+  color: var(--color-gray-700);
+  margin: var(--spacing-1) 0 0 0;
+  text-align: left;
+}
+
 /* Keyboard focus states */
 .draggable-card:focus-visible .card-image-container {
   box-shadow: var(--shadow-inset);
@@ -85,4 +113,13 @@
 
 .draggable-card.selected .card-image-container {
   border-color: var(--color-white);
+}
+
+.draggable-card.selected .card-tag {
+  color: var(--color-white);
+  border-color: var(--color-gray-400);
+}
+
+.draggable-card.selected .card-description {
+  color: var(--color-gray-200);
 }

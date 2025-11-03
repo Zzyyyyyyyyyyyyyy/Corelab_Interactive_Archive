@@ -125,7 +125,18 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
         </div>
         <div className="card-info">
           <h3 className="card-title">{fragment.title}</h3>
-          {fragment.role && <span className="card-role">{fragment.role}</span>}
+          {fragment.tags && fragment.tags.length > 0 && (
+            <div className="card-tags">
+              {fragment.tags.map((tag, idx) => (
+                <span key={idx} className="card-tag">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+          {fragment.description && (
+            <p className="card-description">{fragment.description}</p>
+          )}
         </div>
       </div>
 

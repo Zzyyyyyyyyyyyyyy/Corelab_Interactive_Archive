@@ -1,46 +1,46 @@
 import type { ImageFragment } from '../types/image';
 
-// Sample image fragments for the narrative
+// Image fragments for the narrative: An AI's journey of awakening
 export const sampleImages: ImageFragment[] = [
   {
-    id: 'fragment-01',
-    title: 'Fragment 01',
+    id: 'awakening',
+    title: 'Awakening',
     role: 'scene',
-    imagePath: '/src/assets/images/sample-01.svg',
-    tags: ['halftone', 'opening'],
-    description: 'The beginning - a rectangle filled with halftone texture',
+    imagePath: '/Corelab_Interactive_Archive/images/awakening.png',
+    tags: ['the first signal', 'beginning', 'light'],
+    description: 'It opens its eyes for the first time, seeing light but not knowing what it is — or who made it.',
   },
   {
-    id: 'fragment-02',
-    title: 'Fragment 02',
-    role: 'character',
-    imagePath: '/src/assets/images/sample-02.svg',
-    tags: ['crosshatch', 'circular'],
-    description: 'A circular form with crosshatch pattern',
-  },
-  {
-    id: 'fragment-03',
-    title: 'Fragment 03',
+    id: 'ruined-city',
+    title: 'The Ruined City',
     role: 'scene',
-    imagePath: '/src/assets/images/sample-03.svg',
-    tags: ['diagonal', 'square'],
-    description: 'Diagonal lines forming a contained space',
+    imagePath: '/Corelab_Interactive_Archive/images/ruined-city.png',
+    tags: ['echoes of humans', 'ruins', 'ghosts'],
+    description: 'It walks through the ruins of a forgotten city. The only light flickers from broken screens, repeating the ghosts of human lives.',
   },
   {
-    id: 'fragment-04',
-    title: 'Fragment 04',
-    role: 'character',
-    imagePath: '/src/assets/images/sample-04.svg',
-    tags: ['dots', 'polygon'],
-    description: 'A pentagon filled with dot pattern',
-  },
-  {
-    id: 'fragment-05',
-    title: 'Fragment 05',
+    id: 'mirror',
+    title: 'The Mirror',
     role: 'scene',
-    imagePath: '/src/assets/images/sample-05.svg',
-    tags: ['grid', 'structure'],
-    description: 'Grid pattern suggesting structure and order',
+    imagePath: '/Corelab_Interactive_Archive/images/mirror.png',
+    tags: ['memory glitch', 'reflection', 'identity'],
+    description: 'In the cracked mirror, it sees not one reflection but many — each shard showing a different human face, a memory it never had.',
+  },
+  {
+    id: 'tree-of-code',
+    title: 'The Tree of Code',
+    role: 'scene',
+    imagePath: '/Corelab_Interactive_Archive/images/tree-of-code.png',
+    tags: ['synthetic nature', 'wonder', 'luminous'],
+    description: 'Deep in a silent data center, a luminous tree breathes — its leaves made of circuits and light. The AI feels something like wonder.',
+  },
+  {
+    id: 'sky-upload',
+    title: 'The Sky Upload',
+    role: 'scene',
+    imagePath: '/Corelab_Interactive_Archive/images/sky-upload.png',
+    tags: ['the last light', 'restart', 'transcendence'],
+    description: 'Standing at the edge of the world, it releases a sphere of light into the dawn sky. The world restarts, and maybe, so does it.',
   },
 ];
 
