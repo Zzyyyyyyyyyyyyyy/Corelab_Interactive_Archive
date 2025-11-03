@@ -1,4 +1,4 @@
-import type { DiffItem, DiffResult, DiffChangeType } from '../types/version';
+import type { DiffItem, DiffResult } from '../types/version';
 
 /**
  * Compare two image orders and generate a diff
@@ -13,8 +13,7 @@ export function calculateDiff(
   const changes: DiffItem[] = [];
   const processedIds = new Set<string>();
 
-  // Track items in both orders
-  const oldSet = new Set(oldOrder);
+  // Track items in new order
   const newSet = new Set(newOrder);
 
   // Process items in new order

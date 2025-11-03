@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useStore } from '../../store/useStore';
 import { calculateDiff, getDiffSummary } from '../../utils/diffAlgorithm';
-import type { Version } from '../../types/version';
 import './DiffView.css';
 
 interface DiffViewProps {

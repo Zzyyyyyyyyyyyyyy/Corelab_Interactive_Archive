@@ -5,7 +5,6 @@ import type { ImageFragment } from '../../types/image';
 import { MetadataEditor } from './MetadataEditor';
 import './DraggableCard.css';
 
-// Define drag item type identifier for React DnD
 const ITEM_TYPE = 'IMAGE_CARD';
 
 interface DraggableCardProps {
@@ -32,9 +31,7 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
   const ref = useRef<HTMLDivElement>(null);
   const [showMetadataEditor, setShowMetadataEditor] = useState(false);
 
-  // ========================================
-  // DROP TARGET: Makes this card accept other draggable cards
-  // ========================================
+  // Drop target setup
   const [{ handlerId }, drop] = useDrop<DragItem, void, { handlerId: Identifier | null }>({
     accept: ITEM_TYPE,
 
@@ -44,51 +41,30 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
       };
     },
 
-    // ========================================
-    // HOVER LOGIC: Core reordering implementation
-    // Triggers when a dragged card hovers over this card
-    // ========================================
     hover(item: DragItem, monitor) {
-      if (!ref.current) {
-        return;
-      }
+      if (!ref.current) return;
 
       const dragIndex = item.index;
       const hoverIndex = index;
 
-      if (dragIndex === hoverIndex) {
-        return;
-      }
+      if (dragIndex === hoverIndex) return;
 
-      // Calculate mouse position to prevent flickering
-      // Only swap when mouse crosses the middle line of the card
+      // Prevent flickering by only swapping when cursor crosses middle
       const hoverBoundingRect = ref.current?.getBoundingClientRect();
       const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
       const clientOffset = monitor.getClientOffset();
       const hoverClientY = (clientOffset?.y || 0) - hoverBoundingRect.top;
 
-      // Dragging downwards: only move when cursor is below 50%
-      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-        return;
-      }
+      // Only swap when cursor is past the middle point
+      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) return;
+      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) return;
 
-      // Dragging upwards: only move when cursor is above 50%
-      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-        return;
-      }
-
-      // Execute the reorder by calling parent's onMove callback
-      // This triggers the Zustand store's moveImage function
       onMove(dragIndex, hoverIndex);
-
-      // Update item index to avoid expensive lookups on next hover
       item.index = hoverIndex;
     },
   });
 
-  // ========================================
-  // DRAG SOURCE: Makes this card draggable
-  // ========================================
+  // Drag source setup
   const [{ isDragging }, drag] = useDrag({
     type: ITEM_TYPE,
     item: () => {
@@ -99,7 +75,6 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
     }),
   });
 
-  // Combine drag and drop on the same element
   drag(drop(ref));
 
   return (

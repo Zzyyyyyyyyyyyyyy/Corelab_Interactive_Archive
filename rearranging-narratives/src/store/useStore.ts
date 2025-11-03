@@ -6,55 +6,41 @@ import type { Version } from '../types/version';
 import { sampleImages, defaultOrder } from '../data/sampleImages';
 
 interface AppState {
-  // Image data and ordering
   images: ImageFragment[];
   imageOrder: string[];
-
-  // Drag configuration
   dragDriver: DragDriverType;
   snapConfig: SnapConfig;
 
-  // ========================================
-  // VERSION MANAGEMENT: Saved cuts/arrangements
-  // ========================================
+  // Version management
   versions: Version[];
   currentVersionId: string | null;
 
-  // Actions
+  // Basic actions
   setImageOrder: (order: string[]) => void;
   moveImage: (fromIndex: number, toIndex: number) => void;
   setDragDriver: (driver: DragDriverType) => void;
   setSnapConfig: (config: SnapConfig) => void;
   resetOrder: () => void;
 
-  // Keyboard navigation
+  // Keyboard shortcuts
   moveImageUp: (id: string) => void;
   moveImageDown: (id: string) => void;
   moveImageToStart: (id: string) => void;
   moveImageToEnd: (id: string) => void;
 
-  // ========================================
-  // VERSION MANAGEMENT ACTIONS
-  // ========================================
+  // Version actions
   saveVersion: (name: string, description?: string) => void;
   loadVersion: (versionId: string) => void;
   deleteVersion: (versionId: string) => void;
 
-  // Metadata editing
   updateImageMetadata: (id: string, updates: Partial<ImageFragment>) => void;
-
-  // Import/Export
   exportToJSON: () => string;
   importFromJSON: (json: string) => boolean;
 }
 
-// ========================================
-// Zustand Store with localStorage persistence
-// ========================================
 export const useStore = create<AppState>()(
   persist(
     (set, get) => ({
-      // Initial state
       images: sampleImages,
       imageOrder: defaultOrder,
       dragDriver: 'react-dnd',
@@ -68,10 +54,7 @@ export const useStore = create<AppState>()(
 
       setImageOrder: (order) => set({ imageOrder: order }),
 
-      // ========================================
-      // CORE REORDERING: Move image between positions
-      // Uses array splice to remove and insert at new index
-      // ========================================
+      // Core drag-and-drop logic
       moveImage: (fromIndex, toIndex) => {
         const { imageOrder } = get();
         const newOrder = [...imageOrder];
@@ -81,12 +64,9 @@ export const useStore = create<AppState>()(
       },
 
       setDragDriver: (driver) => set({ dragDriver: driver }),
-
       setSnapConfig: (config) => set({ snapConfig: config }),
-
       resetOrder: () => set({ imageOrder: defaultOrder, currentVersionId: null }),
 
-      // Keyboard navigation helpers
       moveImageUp: (id) => {
         const { imageOrder } = get();
         const currentIndex = imageOrder.indexOf(id);
@@ -119,9 +99,6 @@ export const useStore = create<AppState>()(
         }
       },
 
-      // ========================================
-      // VERSION MANAGEMENT: Save current arrangement as a named version
-      // ========================================
       saveVersion: (name, description) => {
         const { imageOrder, versions } = get();
         const newVersion: Version = {
@@ -137,9 +114,6 @@ export const useStore = create<AppState>()(
         });
       },
 
-      // ========================================
-      // VERSION MANAGEMENT: Load a saved version
-      // ========================================
       loadVersion: (versionId) => {
         const { versions } = get();
         const version = versions.find((v) => v.id === versionId);
@@ -151,9 +125,6 @@ export const useStore = create<AppState>()(
         }
       },
 
-      // ========================================
-      // VERSION MANAGEMENT: Delete a version
-      // ========================================
       deleteVersion: (versionId) => {
         const { versions, currentVersionId } = get();
         set({
@@ -162,9 +133,6 @@ export const useStore = create<AppState>()(
         });
       },
 
-      // ========================================
-      // METADATA EDITING: Update image properties
-      // ========================================
       updateImageMetadata: (id, updates) => {
         const { images } = get();
         set({
@@ -174,9 +142,6 @@ export const useStore = create<AppState>()(
         });
       },
 
-      // ========================================
-      // EXPORT: Generate JSON of current state
-      // ========================================
       exportToJSON: () => {
         const { images, imageOrder, versions } = get();
         const exportData = {
@@ -191,20 +156,15 @@ export const useStore = create<AppState>()(
         return JSON.stringify(exportData, null, 2);
       },
 
-      // ========================================
-      // IMPORT: Load state from JSON
-      // ========================================
       importFromJSON: (json) => {
         try {
           const data = JSON.parse(json);
 
-          // Validate structure
           if (!data.images || !Array.isArray(data.images)) {
             console.error('Invalid JSON: missing images array');
             return false;
           }
 
-          // Convert date strings back to Date objects
           const versions = (data.versions || []).map((v: any) => ({
             ...v,
             createdAt: new Date(v.createdAt),
@@ -225,7 +185,6 @@ export const useStore = create<AppState>()(
       },
     }),
     {
-      // Persist to localStorage
       name: 'rearranging-narratives-storage-v3',
       partialize: (state) => ({
         images: state.images,

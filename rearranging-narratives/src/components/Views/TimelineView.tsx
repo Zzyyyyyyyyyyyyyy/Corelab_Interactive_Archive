@@ -15,7 +15,7 @@ export const TimelineView: React.FC = () => {
   );
 
   const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent, fragment: ImageFragment, index: number) => {
+    (e: React.KeyboardEvent, fragment: ImageFragment, _index: number) => {
       switch (e.key) {
         case 'ArrowLeft':
           e.preventDefault();
